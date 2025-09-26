@@ -1,9 +1,7 @@
 import requests
 import json
-import os
-from dotenv import load_dotenv
 import re
-load_dotenv()
+import streamlit as st
 
 
 
@@ -11,7 +9,7 @@ def query_model(prompt: str, model: str) -> str:
   response = requests.post(
       url="https://lightning.ai/api/v1/chat/completions",
       headers={
-          "Authorization": f"Bearer {os.getenv('API_KEY')}",
+          "Authorization": f"Bearer {st.secrets["API_KEY"]}",
           "Content-Type": "application/json",
       },
       data=json.dumps({
